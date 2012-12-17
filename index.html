@@ -343,7 +343,7 @@ fib n = fib (n - 1) + fib (n - 2)
 ```clojure
 (def counter-state (atom 0))
 
-(defn count []
+(defn count-up []
   (swap! counter-state inc)
   @counter-state)
 ```

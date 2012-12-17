@@ -33,7 +33,7 @@ add(1,2,3,4,5)
 
 def partial(fn, *args):
   def newfn(*moar_args):
-    return newfn(*(args + moar_args))
+    return fn(*(args + moar_args))
   return newfn
 
 inc2 = partial(add, 2)

@@ -1,438 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!doctype html>
 <html lang="en">
 
   <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>There's More to Life than Just Functions</title>
 
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="Look it's a slide deck">
+    <meta name="author" content="Bodil Stokke">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/raspberrymint.css" id="theme">
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/theme/raspberrymint.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/tomorrow-night-eighties.css">
 
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
-      // If the query includes 'print-pdf' we'll use the PDF print sheet
       document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
     </script>
 
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
+
   </head>
 
   <body>
 
     <div class="reveal">
 
-      <!-- Used to fade in a background when a specific slide state is reached -->
-      <div class="state-background"></div>
-
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
+
         <section>
-          <h1>Reveal.js</h1>
-          <h3>HTML Presentations Made Easy</h3>
+          <h4>Bodil Stokke</h4>
+          <h3>@bodil</h3>
         </section>
 
         <section>
-          <h2>Heads Up</h2>
-          <p>
-            reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-            support for CSS 3D transforms to see it in its full glory.
-          </p>
-          <p>
-            <i><small>- <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small></i>
-          </p>
-
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
-        </section>
-
-        <!-- Example of nested vertical slides -->
-        <section>
-          <section>
-            <h2>Vertical Slides</h2>
-            <p>
-              Slides can be nested inside of other slides,
-              try pressing <a href="#/2/1">down</a>.
-            </p>
-            <a href="#/2/1" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-            </a>
-          </section>
-          <section>
-            <h2>Basement Level 1</h2>
-            <p>Press down or up to navigate.</p>
-          </section>
-          <section>
-            <h2>Basement Level 2</h2>
-            <p>Cornify</p>
-            <a class="test" href="http://cornify.com">
-              <img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-            </a>
-          </section>
-          <section>
-            <h2>Basement Level 3</h2>
-            <p>That's it, time to go back up.</p>
-            <a href="#/2" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-            </a>
-          </section>
+          <img src="/m/storycat.jpg"/>
         </section>
 
         <section>
-          <h2>Holistic Overview</h2>
-          <p>
-            Press <strong>ESC</strong> to enter the slide overview!
-          </p>
-        </section>
-
-        <section>
-          <h2>Works in Mobile Safari</h2>
-          <p>
-            Try it out! You can swipe through the slides pinch your way to the overview.
-          </p>
-        </section>
-
-        <section>
-          <h2>Marvelous Unordered List</h2>
-          <ul>
-            <li>No order here</li>
-            <li>Or here</li>
-            <li>Or here</li>
-            <li>Or here</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Fantastic Ordered List</h2>
+          <h3>Functional programming</h3>
           <ol>
-            <li>One is smaller than...</li>
-            <li>Two is smaller than...</li>
-            <li>Three!</li>
+            <li class="fragment">Functions are values</li>
+            <li class="fragment">Functions can take other functions as arguments</li>
+            <li class="fragment">Functions can return other functions</li>
+          </ol>
+        </section>
+
+        <section>
+          <img src="/m/curry-on.jpg"/>
+        </section>
+
+        <section>
+          <img src="/m/lambda-man.jpg"/>
+          <div class="pic-label big fragment">
+            MONADS
+          </div>
+        </section>
+
+        <section>
+          <blockquote>
+            A monad is a monoid in the category of endofunctors.
+            What's the problem?
+          </blockquote>
+          <div class="attribution">Not Philip Wadler</div>
+        </section>
+
+        <section>
+          <img src="/m/skepticat.jpg"/>
+        </section>
+
+        <section>
+          <pre><code class="java">class EvenJavaCanMap {
+    interface Fn&lt;T&gt; {
+        T apply(T value);
+    }
+
+    public static List&lt;T&gt; map(Fn&lt;T&gt; fn, List&lt;T&gt; list) {
+        List&lt;T&gt; newList = new LinkedList&lt;T&gt;();
+        for (T item : list)
+            newList.add(fn.apply(item));
+        return newList;
+    }
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Haskell</h2>
+          <img class="no-shadow" src="/m/haskell-minus-curry.png"/>
+        </section>
+
+        <section>
+          <h3>Pure Functions</h3>
+          <ol>
+            <li class="fragment">Referential transparency</li>
+            <li class="fragment">No side effects</li>
           </ol>
         </section>
 
         <section data-markdown>
-          ## Markdown support
+### Memoisation
 
-          For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
+```haskell
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+```
+        </section>
 
-```html
-&lt;section data-markdown&gt;
-=======
-	
-	<head>
-		<meta charset="utf-8">
-		
-		<title>reveal.js - The HTML Presentation Framework</title>
+        <section data-markdown>
+### Memoisation
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
-		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-		
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
-
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
-		<script>
-			// If the query includes 'print-pdf' we'll use the PDF print sheet
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
-
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-	
-	<body>
-		
-		<div class="reveal">
-
-			<!-- Used to fade in a background when a specific slide state is reached -->
-			<div class="state-background"></div>
-			
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-				</section>
-				
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with 
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-					<p>
-						<i><small>- <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small></i>
-					</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-					</aside>
-				</section>
-				
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#/2/1">down</a>.
-						</p>
-						<a href="#/2/1" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Holistic Overview</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview!
-					</p>
-				</section>
-
-				<section>
-					<h2>rvl.io</h2>
-					<p>
-						If you don't like writing slides in HTML you can use the online editor <a href="http://www.rvl.io" target="_blank">rvl.io</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section data-markdown>
-					## Markdown support
-					
-					For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-
-					<pre><code contenteditable style="margin-top: 20px;">&lt;section data-markdown&gt;
->>>>>>> 21d80076bd14939dbb693fdb1f13347b1bf9189f
-  ## Markdown support
-
-  For those of you who like that sort of thing.
-  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-&lt;/section&gt;
-<<<<<<< HEAD
+```clojure
+(defn fib [n]
+  (if (< n 2) n
+      (+ (fib (- n 1))
+         (fib (- n 2)))))
 ```
         </section>
 
         <section>
-          <h2>Transition Styles</h2>
-          <p>
-            You can select from different transitions, like:
-          </p>
-          <ul>
-            <li><a href="http://lab.hakim.se/reveal-js/?transition=cube">Cube</a></li>
-            <li><a href="http://lab.hakim.se/reveal-js/?transition=page">Page</a></li>
-            <li><a href="http://lab.hakim.se/reveal-js/?transition=concave">Concave</a></li>
-            <li><a href="http://lab.hakim.se/reveal-js/?transition=linear">Linear</a></li>
-          </ul>
-        </section>
-
-        <section>
-          <section data-state="alert">
-            <h2>Global State</h2>
-            <p>
-              Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-              will be added as a class to the document element when the slide is open. This lets you
-              apply broader style changes, like switching the background.
-            </p>
-            <a href="#/7/1" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-            </a>
-          </section>
-          <section data-state="blackout">
-            <h2>"blackout"</h2>
-            <a href="#/7/2" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-            </a>
-          </section>
-          <section data-state="soothe">
-            <h2>"soothe"</h2>
-            <a href="#/7/0" class="image">
-              <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-            </a>
-          </section>
-        </section>
-
-        <section data-state="customevent">
-          <h2>Custom Events</h2>
-          <p>
-            Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-          </p>
-          <pre><code contenteditable>Reveal.addEventListener( 'customevent', function() {
-  console.log( '"customevent" has fired' );
-} );
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Clever Quotes</h2>
-          <p>
-            These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-            The nice thing about standards is that there are so many to choose from</q> and block:
-          </p>
-          <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-            For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-            reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
-          </blockquote>
-        </section>
-
-        <section>
-          <h2>Pretty Code</h2>
-          <pre><code class="clj">;; Memoised Fibonacci the easy way
-(defn fib
-  "Calculates the nth Fibonacci number."
-  [n]
-  (if (< n 2) n
-    (+ (fib (-n 1)) (fib (- n 2))))))
-(def fib (memoize fib))</code></pre>
-        </section>
-
-        <section>
-          <h2>Intergalactic Interconnections</h2>
-          <p>
-            You can link between slides internally,
-            <a href="#/2/3">like this</a>.
-          </p>
-        </section>
-
-        <section>
-          <h2>Fragmented Views</h2>
-          <p>Hit the next arrow...</p>
-          <p class="fragment">... to step through ...</p>
+          <h3>Now Hold On</h3>
           <ol>
-            <li class="fragment"><code>any type</code></li>
-            <li class="fragment"><em>of view</em></li>
-            <li class="fragment"><strong>fragments</strong></li>
+            <li class="fragment">No side effects means you can't change your state</li>
+            <li class="fragment">State that doesn't change is not state</li>
           </ol>
         </section>
 
         <section>
-          <h2>Spectacular image!</h2>
-          <a class="image" href="http://hakim.se/experiments/html5/breakdom/" target="_blank">
-            <img width="320" height="412" src="https://s3.amazonaws.com/hakim-static/reveal-js/breakdom.png" alt="BreakDOM game screenshot">
-          </a>
+          <img src="/m/stateless.jpg"/>
         </section>
 
         <section>
-          <h2>Export to PDF</h2>
-          <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-          <iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-          <script>
-            document.getElementById('slideshare').attributeName = 'allowfullscreen';
-          </script>
+          <img src="/m/confused-cat.jpg"/>
+          <div class="pic-label fragment">
+            ...then how do you get anything done?
+          </div>
         </section>
 
         <section>
-          <h2>Stellar Links</h2>
-          <ul>
-            <li><a href="https://github.com/hakimel/reveal.js">Source code on github</a></li>
-            <li><a href="http://hakim.se/projects/reveal-js">Read more on my site</a></li>
-            <li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-          </ul>
+          <img src="/m/lambda-man.jpg"/>
+          <div class="pic-label x-big fragment">
+            MONADS
+          </div>
         </section>
 
         <section>
-          <h1>THE END</h1>
-          <h3>BY Hakim El Hattab / hakim.se</h3>
+          <h3>Type System</h3>
+          <ol>
+            <li class="fragment">Powerful compile time static analysis</li>
+            <li class="fragment">Extensible types</li>
+            <li class="fragment">The core of your program</li>
+            <li class="fragment">Monads enabled</li>
+          </ol>
         </section>
+
+        <section>
+          <img src="/m/immutable.jpg"/>
+        </section>
+
+        <section>
+          <h3>Immutable Data Structures</h3>
+          <ol>
+            <li class="fragment">No unexpected side effects guaranteed</li>
+            <li class="fragment">The easy way to thread safety</li>
+          </ol>
+        </section>
+
+        <section data-markdown>
+### Look ma, no mutation
+
+```clojure
+(def primes [2 3 5 7 11 13])
+(assoc primes 3 42)
+```
+        </section>
+
+        <section>
+          <img src="/m/wait-a-minute.jpg"/>
+          <div class="pic-label">
+            Now wait just a minute...
+          </div>
+        </section>
+
+        <section>
+          <img src="/m/what-about-performance.jpg"/>
+          <div class="pic-label big">
+            Wouldn't that be really slow?
+          </div>
+        </section>
+
+        <section>
+          <img class="no-shadow" src="/m/cons-cell.png"/>
+        </section>
+
+        <section data-markdown>
+### Building a linked list
+
+```clojure
+(cons 5 nil)
+(cons 4 (cons 5 nil))
+(cons 3 (cons 4 (cons 5 nil)))
+```
+        </section>
+
+        <section>
+          <img class="no-shadow" src="/m/linked-list.png"/>
+        </section>
+
+        <section>
+          <img src="/m/okasaki.jpg"/>
+        </section>
+
+        <section>
+          <img class="no-shadow" src="/m/land-of-lisp.png"/>
+        </section>
+
+        <section>
+          <h1 class="clojure-splat">Clo<i>j</i>ure</h1>
+          <img class="no-shadow" src="/m/clojure-logo.png"/>
+        </section>
+
+        <section>
+          <h3>The New Lisp</h3>
+          <ol>
+            <li class="fragment">Homoiconic like a boss</li>
+            <li class="fragment">Values, not objects</li>
+            <li class="fragment">Polymorphism without inheritance</li>
+            <li class="fragment">Concurrent by design</li>
+            <li class="fragment">And yet, the JVM</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Homoiconic</h2>
+          <img class="no-shadow" src="/m/homoiconic.png"/>
+        </section>
+
+        <section data-markdown>
+### Code and data are one
+
+```clojure
+;; This is a function call:
+(max 4 5 6)
+
+;; This is a list:
+'(max 4 5 6)
+```
+        </section>
+
+        <section data-markdown>
+          <h3>Send men to summon macros</h3>
+          <pre><code class="clojure">(defn invoke-func [name arg]
+  `(~(symbol name) ~arg))
+</code></pre>
+        </section>
+
+        <section data-markdown>
+### DSLs like a boss!
+
+```clojure
+(use 'hiccup.core)
+
+(html [:body
+  [:h1#title "Hello"]
+  [:p.article "Hello world!"]])
+```
+        </section>
+
+        <section data-markdown>
+### DSLs like a boss!
+
+```clojure
+(use 'korma.core)
+
+(defentity person)
+
+(dry-run
+  (select person
+    (where {:name "Bodil" :age [> 18]})
+    (order :name :ASC)))
+```
+        </section>
+
+        <section>
+          <img src="/m/data-all-the-things.jpg"/>
+        </section>
+
+        <section data-markdown>
+### Values, not objects
+
+```clojure
+; Maps
+(def pony-types
+  {"Pinkie Pie" "Earth pony",
+   "Rainbow Dash" "Pegasus pony",
+   "Rarity" "Unicorn pony"})
+
+; Sequences
+(def ponies
+  ["Pinkie Pie" "Applejack" "Rainbow Dash"
+   "Rarity" "Fluttershy" "Twilight Sparkle"])
+```
+        </section>
+
+        <section>
+          <img src="/m/rainbow-dash.jpg"/>
+        </section>
+
+        <section data-markdown>
+### Serialisation, you say?
+
+```clojure
+(def ponies-as-string (str ponies))
+
+((read-string ponies) 2)
+```
+        </section>
+
+        <section>
+          <img src="/m/ponies.jpg"/>
+        </section>
+
+        <section>
+          <img src="/m/multicore-cats.jpg"/>
+          <div class="pic-label big">
+            MULTI-CORE LIKE A BOSS
+          </div>
+        </section>
+
+        <section data-markdown>
+### State gonna state
+
+```clojure
+(def counter-state (atom 0))
+
+(defn count []
+  (swap! counter-state inc)
+  @counter-state)
+```
+        </section>
+
+        <section data-markdown>
+### Threads so simple you could cry
+
+```clojure
+(defn sum-to [n]
+  (reduce + (range n)))
+
+; (sum-to 250000000)
+```
+        </section>
+
+        <section>
+          <img src="/m/skepticat2.jpg"/>
+          <div class="pic-label">
+            Yeah, I'm not sure...
+          </div>
+        </section>
+
+        <section>
+          <img src="/m/conan.jpg"/>
+          <div class="pic-label">
+            Which language is best in life?
+          </div>
+        </section>
+
+        <section>
+          <img src="/m/serious.jpg"/>
+          <div class="pic-label big">
+            Seriously.
+          </div>
+        </section>
+
+        <section>
+          <h3>Tribalism is dumb</h3>
+          <ol>
+            <li class="fragment">Haskell doesn't let you write bugs</li>
+            <li class="fragment">Erlang runs forever</li>
+            <li class="fragment">Clojure is infinitely extensible</li>
+            <li class="fragment">Java is a mess but very, very fast</li>
+            <li class="fragment">Go is a clever systems language</li>
+            <li class="fragment">Even Scala is probably good for something</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>It depends.</h2>
+        </section>
+
+        <section>
+          <h2>Be the traveller,</h2>
+          <h2>not the tribesman.</h2>
+        </section>
+
+        <section>
+          <h2>There is no such thing as a perfect language.</h2>
+        </section>
+
+        <section>
+          <img src="/m/rich.jpg"/>
+        </section>
+
+        <section>
+          <img src="/m/nic.jpg"/>
+          <div class="pic-label big">
+            kthxbye.
+          </div>
+          <p><a href="https://github.com/bodil/more-than-functions">https://github.com/bodil/more-than-functions</a></p>
+        </section>
+
       </div>
-
-      <!-- The navigational controls UI -->
-      <aside class="controls">
-        <a class="left" href="#">&#x25C4;</a>
-        <a class="right" href="#">&#x25BA;</a>
-        <a class="up" href="#">&#x25B2;</a>
-        <a class="down" href="#">&#x25BC;</a>
-      </aside>
-
-      <!-- Presentation progress bar -->
-      <div class="progress"><span></span></div>
 
     </div>
 
     <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
+    <script src="js/reveal.min.js"></script>
 
     <script>
 
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        controls: true,
-        progress: true,
+        controls: false,
+        progress: false,
         history: true,
-        rollingLinks: false,
+        center: true,
 
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'zoom', // default/cube/page/concave/zoom/linear/none
 
         // Optional libraries used to extend on reveal.js
         dependencies: [
-          // { src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/prettify/prettify.js', async: true, callback: function() {
             var i, els = document.querySelectorAll("code"), l = els.length, el;
             for (i = 0; i < l; i++) {
@@ -441,9 +451,11 @@
                 el.innerHTML = prettyPrintOne(el.innerHTML, el.className);
             }
           } },
+          // { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: 'plugin/catnip/catnip.js', async: true, condition: function() { return window.parent !== window; } },
-          { src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
-          { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
 

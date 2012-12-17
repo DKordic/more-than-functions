@@ -3,16 +3,23 @@
   var catnipFrame = null;
   var consoleBacklog = [];
 
+  var post = function(msg) {
+    if (catnipFrame) {
+      var command = "client-frame:" + JSON.stringify(msg);
+      catnipFrame.postMessage(command, "*");
+    }
+  };
+
   window.console = {
     log: function() {
-      var command = "client-frame:" + JSON.stringify({
+      var command = {
         console: {
           method: "log",
           arguments: Array.prototype.slice.call(arguments)
         }
-      });
+      };
       if (catnipFrame)
-        catnipFrame.postMessage(command, "*");
+        post(command);
       else
         consoleBacklog.push(command);
     }
@@ -24,14 +31,21 @@
     var currentUrl = window.location.href;
     if (currentUrl != lastUrl) {
       lastUrl = currentUrl;
-      if (catnipFrame) {
-        var command = "client-frame:" + JSON.stringify({
-          url: lastUrl
-        });
-        catnipFrame.postMessage(command, "*");
-      }
+      post({url: lastUrl});
     }
   }, 100);
+
+  var postCurrentSource = function() {
+    var command, code = Reveal.getCurrentSlide().querySelector("code");
+    if (code) {
+      code = code.innerHTML
+        .replace(/<\/?span[^>]*>/g, "")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&");
+      post({source: code});
+    }
+  };
 
   window.addEventListener("message", function(event) {
     if (event.data === "hello") {
@@ -54,6 +68,8 @@
       Reveal.navigateDown();
     } else if (event.data === "escape") {
       Reveal.toggleOverview();
+    } else if (event.data === "getSource") {
+      postCurrentSource();
     }
   }, false);
 }());
